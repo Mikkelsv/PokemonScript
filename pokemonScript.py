@@ -2,8 +2,10 @@ from keyModule import PressKey, ReleaseKey
 import time 
 import keyboard
 import random
-keySpeed = 0.008 #0.01
-pressDur = 0.018
+from runPokeScript import pressSpeed, pressDuration
+
+pressSpeed = 0.008 #0.01
+pressDuration = 0.018
 speedKey = 0x5A #Z key
 
 moveset = ['w','d','s','a']
@@ -34,11 +36,11 @@ def uniform_action_run():
                 break
         except:
             pass
-        time.sleep(keySpeed)
+        time.sleep(pressSpeed)
         move = random.choice(all_actions)
         key = action_dict[move]
         PressKey(key)
-        time.sleep(pressDur)
+        time.sleep(pressDuration)
         ReleaseKey(key)
 
 def weighted_action_run():
@@ -55,7 +57,7 @@ def weighted_action_run():
                 break
         except:
             pass
-        time.sleep(keySpeed)
+        time.sleep(pressSpeed)
         p = random.random()
         if p < weightMove: move = random.choice(moveset)
         elif p<weightA: move = aButton
@@ -63,10 +65,10 @@ def weighted_action_run():
         else: move = startButton
         key = action_dict[move]
         PressKey(key)
-        time.sleep(pressDur)
+        time.sleep(pressDuration)
         ReleaseKey(key)
 
-def circles(n=10,s=keySpeed,d=pressDur):
+def circles(n=10,s=pressSpeed,d=pressDuration):
     for i in range(n):
         for a in moveset:
             time.sleep(s)
@@ -75,11 +77,3 @@ def circles(n=10,s=keySpeed,d=pressDur):
             time.sleep(d)
             ReleaseKey(key)
 
-if __name__ == "__main__":
-    print("Waiting for esc",end='\r')
-    keyboard.wait('esc')
-    time.sleep(1)
-    print("Acid Ash Adventure")
-    PressKey(speedKey)
-    circles(40)
-    #weighted_action_run()
