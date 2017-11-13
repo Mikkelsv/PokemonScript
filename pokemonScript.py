@@ -19,7 +19,7 @@ expl_dict = {'w':'UP','s':'DOWN','a':'LEFT','d':'RIGHT','q':'BUTTONA',
 
 #action weights
 weightMove = 0.60
-weightA = weightMove + 0.35
+weightA = weightMove + 0.3
 weightB = weightA + 0.09
 weightStart = 1
 
