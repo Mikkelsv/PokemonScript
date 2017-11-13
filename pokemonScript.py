@@ -4,8 +4,6 @@ import keyboard
 import random
 from runPokeScript import pressSpeed, pressDuration
 
-pressSpeed = 0.008 #0.01
-pressDuration = 0.018
 speedKey = 0x5A #Z key
 
 moveset = ['w','d','s','a']
