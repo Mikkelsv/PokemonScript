@@ -21,16 +21,24 @@ weightA = weightMove + 0.3
 weightB = weightA + 0.09
 weightStart = 1
 
+try:
+    with open('tot_key_press.txt', 'r') as f:
+        pressCounter = int(f.readline().strip().split()[1])
+except:
+    pressCounter = 0
+
 def uniform_action_run():
     print("Actions currently randomly chosen")
-    pressCounter = 0
     while True:
         pressCounter += 1
         if pressCounter%100==0:
             print("Count: {}".format(pressCounter),end='\r')
         try:
             if keyboard.is_pressed('esc'):
+                print("Count: {}".format(pressCounter))
                 print("Stopping script")
+                with open('tot_key_press.txt', 'w') as f:
+                    f.write('total: ' + str(pressCounter) + '\n')
                 break
         except:
             pass
@@ -43,7 +51,6 @@ def uniform_action_run():
 
 def weighted_action_run():
     print("Actions currently with weight distribution")
-    pressCounter = 0
     while True:
         pressCounter += 1
         if pressCounter%100==0:
@@ -52,6 +59,8 @@ def weighted_action_run():
             if keyboard.is_pressed('esc'):
                 print("Count: {}".format(pressCounter))
                 print("Stopping script")
+                with open('tot_key_press.txt', 'w') as f:
+                    f.write('total: ' + str(pressCounter) + '\n')
                 break
         except:
             pass
